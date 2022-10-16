@@ -3,7 +3,7 @@
 <script>
 
     import svelte, {onMount} from 'svelte';
-    import TestBox from './tests/Konvelte--testbox.svelte';
+    import TestBox from './tests/Konvelte--konva-core.svelte';
 
     let isMounted = false;
     $: if (isMounted) {

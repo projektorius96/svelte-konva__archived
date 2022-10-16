@@ -1,4 +1,4 @@
-import App from './App.svelte';
+import App from './Konvelte-wrapper.svelte';
 
 // @https://svelte.dev/docs#run-time-custom-element-api
 const app = new App({
