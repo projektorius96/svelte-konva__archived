@@ -1,9 +1,12 @@
 <!-- <TestBox /> -->
 
+<!-- <Stage/> -->
+
 <script>
 
     import svelte, {onMount} from 'svelte';
-    import TestBox from './tests/Konvelte--konva-core.svelte';
+    import TestBox from './tests/Konvelte--konva-core__testbox.svelte';
+    import Stage from './pkgs/Konvelte--stage.svelte';
 
     let isMounted = false;
     $: if (isMounted) {
