@@ -1,0 +1,22 @@
+### Motivation
+
+> Konva.js is Canvas API framework, which already has wrappers for React, Vue, but there is no (proper?) Svelte wrapper for Konva.js core . This is it ! Finally decided to write a minimum maintanable (live) Svelte wrapper for Konva : just like React, Vue, we can (& will) take advantage of Svelte for its simplicity, built-in state management with svelte/store, etc. 
+
+> I am starting a project as a solo initially, but may accept any PR request upon guidelines provided (the guidelines would appear in the future on-demand i.e. if someone would like to contribute)
+
+### Prerequisite
+
+> 1.1) `npm i` (package.json) or `npm ci` to reproduce identical deps graph (package-lock.json)
+
+> 1.2) `npm run dev:serv`
+
+### References
+
+- [Svelte.dev](https://svelte.dev/)
+- [Konva.js](https://konvajs.org/)
+- ...
+
+---
+
+Regards, <br>
+Lukas Gaucas (projektorius96)

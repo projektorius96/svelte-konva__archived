@@ -1,0 +1,4 @@
+:root{
+    --fluid-container-width: calc((100vw - (100vw - 100%)));
+    --boxed-container-width: calc(var(--fluid-container-width)*0.5);
+}

@@ -1,0 +1,20 @@
+/* Base : */
+@import './base/reset.css'; /* box-model resets */ /* .styleSheets[0] */
+@import './base/variables.css'; /* :root{} */ /* .styleSheets[1] */
+
+/* 3rd-parties (a.k.a vendors) : */
+/* ... */
+
+/* Components : */
+/* @import './components/'; */
+  
+/* User-defined styling : */
+#container {
+  background-color: rgb(115, 115, 115);
+  display: flex;
+  justify-content: center;
+/*   align-items: center; */
+  width: var(--fluid-container-width);
+  height: 100vh;
+  overflow: hidden;
+}
