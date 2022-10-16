@@ -1,18 +1,19 @@
 <script>
     
-    import {onMount} from 'svelte'
+    import {onMount} from 'svelte';
     import Konva from 'konva';
 
     let isMounted;
     $: if (isMounted) {
-            stage.setAttr('height', document.getElementById('root').clientHeight)
+            stage.setAttr('height', document.getElementById('root').clientHeight);
     } 
 
     onMount(()=>{
         console.log("onMount ([pathspec].svelte)");
-        isMounted = true
+        isMounted = true;
     })
     
+    // create a stage
     var stage = new Konva.Stage({
         container: 'root',
         width: 960,
@@ -52,9 +53,10 @@
         name: "circle"
     });
 
-    var layer = new Konva.Layer()
+    // create a layer
+    var layer = new Konva.Layer();
 
-    // add the shape to the layer
+    // add some shapes to the layer
     layer.add(circle, circle2, circle3);
 
     // add the layer to the stage

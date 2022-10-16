@@ -8,7 +8,7 @@
     let isMounted = false;
     $: if (isMounted) {
         // TIP : this is top-level useEffect-like reactive statement
-        /// ===
+        //  ===
         new TestBox({
             target: $$props.target,
         })
@@ -21,7 +21,7 @@
         // this would be returned on component being destroyed, this lets avoid explicit onDestroy() call , for more please refer to :
         // @https://stackoverflow.com/questions/62126621/how-to-call-destroy-on-a-component-from-inside-the-component
         return (()=>{
-            console.log("onDestroy ([pathspec].svelte)")
+            console.log("onDestroy ([pathspec].svelte)");
         }) 
     })
 
