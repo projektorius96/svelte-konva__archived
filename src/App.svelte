@@ -10,7 +10,7 @@
         // TIP : this is top-level useEffect-like reactive statement
         /// ===
         new TestBox({
-            target: $$props.target/* document.body */
+            target: $$props.target,
         })
     }
 

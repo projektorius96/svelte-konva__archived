@@ -5,21 +5,20 @@
 
     let isMounted;
     $: if (isMounted) {
-            stage.setAttr('height', document.getElementById('container').clientHeight)
+            stage.setAttr('height', document.getElementById('root').clientHeight)
     } 
 
     onMount(()=>{
         console.log("onMount ([pathspec].svelte)");
         isMounted = true
     })
-
-    globalThis.KONVA_GLOBAL__STAGE = stage // KONVA GLOBALS (DEBUGGING PURPOSES ONLY)
+    
     var stage = new Konva.Stage({
-        container: 'container',
+        container: 'root',
         width: 960,
         height: 480,
     });
-
+    globalThis.KONVA_GLOBAL__STAGE = stage // KONVA GLOBALS (DEBUGGING PURPOSES ONLY)
     var circle = new Konva.Circle({
         x: stage.getAttr('width') / 2,
         y: window.innerHeight / 2,
