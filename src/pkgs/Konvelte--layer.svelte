@@ -7,7 +7,7 @@
 
     $: if(isMounted) {
 
-        console.log("$$props at Konvelte--stage: ", $$props);
+        console.log("--Konvelte--layer $$props: ", $$props);
 
     }
 
@@ -18,10 +18,6 @@
 
     })
     
-    new Konva.Stage({
-        container: $$props.stageConfig.container,
-        // width: $$props.stageConfig.width,
-        // height: $$props.stageConfig.height,
-    })
+    new Konva.Layer()
 
 </script>

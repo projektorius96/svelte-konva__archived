@@ -1,5 +1,6 @@
 <!-- <SandBox /> -->
-<!-- <Stage/> -->
+<!-- <Stage />  -->
+<!-- <Layer /> --> 
 
 <script>
 
@@ -8,13 +9,15 @@
         import SandBox from './tests/Konvelte--konva-core__sandbox.svelte';
     // === TESTING COMPONENTS [END]:
     import Stage from './pkgs/Konvelte--stage.svelte';
+    import Layer from './pkgs/Konvelte--layer.svelte';
     let isMounted = false;
     let stageInstance = undefined;
+    let layerInstance = undefined;
 
-    // NEXT_GOAL:
-    // $: if (stageInstance) {
-    //     /* stageInstance.add(layerInstance) */
-    // }
+    $: if (stageInstance && layerInstance) {
+        globalThis.KONVA_GLOBAL__STAGE = stageInstance // KONVA GLOBALS (DEBUGGING PURPOSES ONLY)
+        /* stageInstance.add(layerInstance) */
+    }
     
     // TIP : this is top-level useEffect-like reactive statement
     $: if (isMounted) {
@@ -35,6 +38,10 @@
                 }, 
             }
         })
+        layerInstance = new Layer({
+            target: $$props.sharedTarget,
+        })
+
     }
 
     onMount(()=>{
