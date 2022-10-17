@@ -6,17 +6,22 @@
     let isMounted = false;
 
     $: if(isMounted) {
-        console.log("onMount ([pathspec.svelte])")
-        console.log(stage)
+
+        console.log("--Konvelte--wrapper $$props: ", $$props);
+
     }
 
     onMount(()=>{
+
+        console.log("onMount ([pathspec.svelte])");
         isMounted = true;
+
     })
     
-    var stage = new Konva.Stage({
-        container: document.body
+    new Konva.Stage({
+        container: $$props.stageConfig.container,
+        width: $$props.stageConfig.width,
+        height: $$props.stageConfig.height,
     })
-
 
 </script>
