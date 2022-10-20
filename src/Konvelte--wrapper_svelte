@@ -24,7 +24,7 @@
 
         console.log("--App $$props: ", $$props)
         // ===
-            // new TestBox({
+            // new SandBox({
             //     target: $$props.sharedTarget,
             // });
         // ===
