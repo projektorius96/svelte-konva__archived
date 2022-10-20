@@ -10,30 +10,34 @@
 
     $: if(isMounted) {
 
-        /* console.log("$$props at Konvelte--stage: ", $$props); */
+        console.log("$$props at Konvelte--stage: ", $$props.props);
 
     }
 
-    $: if (/* stage && layer &&  */KonvaCirclePrefix) {
+    $: if (stage && layer && KonvaCirclePrefix) {
         /* === */
         console.log("KonvaCirclePrefix?", KonvaCirclePrefix)
         KonvaCirclePrefixInstance = new KonvaCirclePrefix.KonvektCircle(KonvaCirclePrefix) // as if ComponentRoot.ExportedNamedFunction.bind(ComponentRoot [defined:at^1]) 
         console.log("KonvaCirclePrefixInstance?", KonvaCirclePrefixInstance);
+        layer.add(KonvaCirclePrefixInstance)
     }
 
     $: if (isMounted) {
 
     stage = new Konva.Stage({
-        container: 'container',
+        container: /* 'container' */$$props.props.sharedTarget,
         width: 960,
         height: 480,
     });
+    globalThis.KONVA_GLOBAL__STAGE = stage; // KONVA GLOBAL (DEBUGGING PURPOSES ONLY) : ON PROD SHOULD BE REMOVED
 
     layer = new Konva.Layer()
-
-    globalThis.KONVA_GLOBAL__STAGE = stage; // KONVA GLOBAL (DEBUGGING PURPOSES ONLY) : ON PROD SHOULD BE REMOVED
+    stage.add(layer)
         
     /* [at^1]: */KonvaCirclePrefix = new KonvektCircle({
+            props: {
+                stage
+            },
             x: stage.getAttr('width') / 2,
             y: window.innerHeight / 2,
             radius: 60,
