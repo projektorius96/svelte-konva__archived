@@ -1,1 +1,0 @@
-    ./pkgs directory will be denoted for default exports (packages) such as shape packages e.g. {circle, rect, etc.}

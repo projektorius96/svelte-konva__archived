@@ -42,7 +42,7 @@
 
     $: if (isMounted) {
     
-        KonvaCirclePrefix = new KonvelteCircle({})
+        KonvaCirclePrefix = new KonvelteCircle({});
 
         stage.setAttr('height', window.innerHeight); // # FIXES HEIGHT SCALING
     
@@ -62,7 +62,7 @@
     });
     globalThis.KONVA_GLOBAL__STAGE = stage; // KONVA GLOBAL (DEBUGGING PURPOSES ONLY) : ON PROD SHOULD BE REMOVED
 
-    layer = new Konva.Layer()
-    stage.add(layer)
+    layer = new Konva.Layer();
+    stage.add(layer);
 
 </script>

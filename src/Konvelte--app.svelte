@@ -4,7 +4,7 @@
 <script>
 
     import svelte, {onMount} from 'svelte';
-    import Stage from './pkgs/Konvelte--stage.svelte'
+    import Stage from './Konvelte--stage.svelte'
 
     let isMounted;
     
