@@ -12,7 +12,7 @@ export function KonvektCircle(options){
         strokeWidth,
         draggable,
     } = options;
-    let shapeInstance = new Konva.Shape({
+    let shapeInstance = new Konva.Circle({
             x,
             y,
             radius,
@@ -23,9 +23,6 @@ export function KonvektCircle(options){
             // name: "circle" // # should reflect function's name
     })
     
-    // shapeInstance.parent.children.push(shapeInstance)
-    // shapeInstance.parent.draw()
-
     return shapeInstance;
 }
 </script>

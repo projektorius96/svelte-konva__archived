@@ -17,12 +17,32 @@
     $: if (stage && layer && KonvaCirclePrefix) {
         /* === */
         console.log("KonvaCirclePrefix?", KonvaCirclePrefix)
-        KonvaCirclePrefixInstance = new KonvaCirclePrefix.KonvektCircle(KonvaCirclePrefix) // as if ComponentRoot.ExportedNamedFunction.bind(ComponentRoot [defined:at^1]) 
-        console.log("KonvaCirclePrefixInstance?", KonvaCirclePrefixInstance);
-        layer.add(KonvaCirclePrefixInstance)
+        KonvaCirclePrefixInstance = /* new  */KonvaCirclePrefix.KonvektCircle({
+            props: {
+                stage
+            },
+            x: 50,
+            y: 50,
+            radius: 60,
+            fill: 'red',
+            stroke: 'black',
+            strokeWidth: 4,
+            draggable: true,
+        }) // as if ComponentRoot.ExportedNamedFunction.bind(ComponentRoot [defined:at^1]) 
+        console.log("KonvaCirclePrefixInstance?", KonvaCirclePrefixInstance, stage, layer);
     }
 
     $: if (isMounted) {
+
+    /* [at^1]: */KonvaCirclePrefix = new KonvektCircle({})
+    }
+
+    onMount(()=>{
+
+        console.log("onMount ([pathspec.svelte])");
+        isMounted = true;
+
+    })
 
     stage = new Konva.Stage({
         container: /* 'container' */$$props.props.sharedTarget,
@@ -33,27 +53,12 @@
 
     layer = new Konva.Layer()
     stage.add(layer)
-        
-    /* [at^1]: */KonvaCirclePrefix = new KonvektCircle({
-            props: {
-                stage
-            },
-            x: stage.getAttr('width') / 2,
-            y: window.innerHeight / 2,
-            radius: 60,
-            fill: 'red',
-            stroke: 'black',
-            strokeWidth: 4,
-            draggable: true,
-        }, stage /* === set as KONVA_GLOBAL__STAGE within KonvektShapeFactories.svelte exported function */)
-    }
 
-    onMount(()=>{
-
-        console.log("onMount ([pathspec.svelte])");
-        isMounted = true;
-
+    requestAnimationFrame(()=>{
+            layer.add(KonvaCirclePrefixInstance)
+            layer.draw()
     })
+
     
     // new Konva.Stage({
     //     container: $$props.stageConfig.container,
