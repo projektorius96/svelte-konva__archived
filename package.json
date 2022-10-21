@@ -1,12 +1,12 @@
 {
-  "name": "konvelte",
+  "name": "svelte-konva",
   "version": "1.0.0",
-  "description": "Svelte wrapper for Konva (Konvelte)",
+  "description": "Svelte wrapper for Konva i.e. svelte-konva(a.k.a. Konvelte)",
   "scripts": {
     "build": "webpack",
     "dev:serv": "webpack serve"
   },
-  "keywords": ["svelte", "konva", "svelte-konva"],
+  "keywords": ["svelte", "konva", "svelte-konva", "konvelte"],
   "author": "Lukas Gaucas (projektorius96)",
   "license": "MIT",
   "devDependencies": {
