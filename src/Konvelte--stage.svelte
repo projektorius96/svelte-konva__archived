@@ -5,8 +5,9 @@
     import {default as KonvelteCircle} from './components/Konvelte--circle.svelte'
     
     let isMounted = false;
+    let k = 10;
     let [stage, layer] = [undefined, undefined];
-    let [KonvelteComponentRegister, KonvelteComponentRegisterInstance] = [undefined, Array(4).fill(0)];
+    let [KonvelteComponentRegister, KonvelteComponentRegisterInstance] = [undefined, Array(k).fill(0)];
 
     $: if(isMounted) {
 
