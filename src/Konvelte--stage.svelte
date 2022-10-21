@@ -6,48 +6,33 @@
     
     let isMounted = false;
     let stage, layer = [undefined, undefined];
-    let KonvaCirclePrefix, KonvaCirclePrefixInstance = [undefined, undefined];
+    let KonvelteComponentRegister, KonvelteComponentRegisterInstance = [undefined, undefined];
 
     $: if(isMounted) {
 
-        console.log("--Konvelte--stage $$props: ", $$props.props);
+        console.log("--Konvelte--stage dependent $$props.props: ", $$props.props);
 
     }
 
-    $: if (stage && layer && KonvaCirclePrefix) {
-        
-        console.log("KonvaCirclePrefix?", KonvaCirclePrefix)
-        
-        // NOTE : COMMENTED LINES BELOW WILL BE REMOVED WITH THE NEXT COUPLE OF COMMITS
-        // KonvaCirclePrefixInstance = KonvaCirclePrefix.KonvelteCircle({
-        //     props: {
-        //         stage
-        //     },
-        //         x: stage.width() / 2,
-        //         y: window.innerHeight / 2,
-        //         radius: 120,
-        //         fill: 'red',
-        //         stroke: 'black',
-        //         strokeWidth: 4,
-        //         draggable: true,
-        // })
-        // console.log("KonvaCirclePrefixInstance?, stage, layer", KonvaCirclePrefixInstance, stage, layer);
-        
-        // // CRUCIAL BLOCK : PLEASE DO NOT FORGET TO INVOKE requestAnimationFrame as follows 
-        // requestAnimationFrame(()=>{
-        //     layer.add(KonvaCirclePrefixInstance)
-        //     layer.draw()
-        // })
+    $: if (stage && layer && KonvelteComponentRegister) {
+
+        console.log("stage && layer && KonvelteComponentRegister?", stage, layer, KonvelteComponentRegister)
         
     }
 
     $: if (isMounted) {
     
-        KonvaCirclePrefix = new KonvelteCircle({});
-        KonvaCirclePrefixInstance = KonvaCirclePrefix.KonvelteCircle({
+        KonvelteComponentRegister = new KonvelteCircle(/* {
+            target: $$props.props.sharedTarget,
+        }*//* : just pass empty object to inherit target property from the parent */ {}); // register Konvelte component 1/2) step
+        KonvelteComponentRegisterInstance = KonvelteComponentRegister.KonvelteCircle({
+            /*  
+            
             props: {
-                stage
-            },
+                stage // pass the stage via dedicated props attribute as if <KonvelteCircle props={stage} />
+            }, 
+            
+            */
                 x: stage.width() / 2,
                 y: window.innerHeight / 2,
                 radius: 120,
@@ -55,12 +40,11 @@
                 stroke: 'black',
                 strokeWidth: 4,
                 draggable: true,
-        })
-        console.log("KonvaCirclePrefixInstance?, stage, layer", KonvaCirclePrefixInstance, stage, layer);
+        }) // enqueue the Konvelte component 2/2) step
         
         // CRUCIAL BLOCK : PLEASE DO NOT FORGET TO INVOKE requestAnimationFrame as follows 
         requestAnimationFrame(()=>{
-            layer.add(KonvaCirclePrefixInstance)
+            layer.add(KonvelteComponentRegisterInstance)
             layer.draw()
         })
 
@@ -70,7 +54,7 @@
 
     onMount(()=>{
 
-        console.log("onMount ([pathspec.svelte])");
+        console.log("onMount ([pathspec].svelte)");
         isMounted = true;
 
     })
