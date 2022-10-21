@@ -18,6 +18,32 @@
         
         console.log("KonvaCirclePrefix?", KonvaCirclePrefix)
         
+        // NOTE : COMMENTED LINES BELOW WILL BE REMOVED WITH THE NEXT COUPLE OF COMMITS
+        // KonvaCirclePrefixInstance = KonvaCirclePrefix.KonvelteCircle({
+        //     props: {
+        //         stage
+        //     },
+        //         x: stage.width() / 2,
+        //         y: window.innerHeight / 2,
+        //         radius: 120,
+        //         fill: 'red',
+        //         stroke: 'black',
+        //         strokeWidth: 4,
+        //         draggable: true,
+        // })
+        // console.log("KonvaCirclePrefixInstance?, stage, layer", KonvaCirclePrefixInstance, stage, layer);
+        
+        // // CRUCIAL BLOCK : PLEASE DO NOT FORGET TO INVOKE requestAnimationFrame as follows 
+        // requestAnimationFrame(()=>{
+        //     layer.add(KonvaCirclePrefixInstance)
+        //     layer.draw()
+        // })
+        
+    }
+
+    $: if (isMounted) {
+    
+        KonvaCirclePrefix = new KonvelteCircle({});
         KonvaCirclePrefixInstance = KonvaCirclePrefix.KonvelteCircle({
             props: {
                 stage
@@ -37,12 +63,6 @@
             layer.add(KonvaCirclePrefixInstance)
             layer.draw()
         })
-        
-    }
-
-    $: if (isMounted) {
-    
-        KonvaCirclePrefix = new KonvelteCircle({});
 
         stage.setAttr('height', window.innerHeight); // # FIXES HEIGHT SCALING
     
