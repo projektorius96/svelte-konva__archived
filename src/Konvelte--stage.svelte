@@ -5,8 +5,8 @@
     import {default as KonvelteCircle} from './components/Konvelte--circle.svelte'
     
     let isMounted = false;
-    let stage, layer = [undefined, undefined];
-    let KonvelteComponentRegister, KonvelteComponentRegisterInstance = [undefined, undefined];
+    let [stage, layer] = [undefined, undefined];
+    let [KonvelteComponentRegister, KonvelteComponentRegisterInstance] = [undefined, Array(4).fill(0)];
 
     $: if(isMounted) {
 
@@ -24,8 +24,9 @@
     
         KonvelteComponentRegister = new KonvelteCircle(/* {
             target: $$props.props.sharedTarget,
-        }*//* : just pass empty object to inherit target property from the parent */ {}); // register Konvelte component 1/2) step
-        KonvelteComponentRegisterInstance = KonvelteComponentRegister.KonvelteCircle({
+        }*//* NOTE : instead, just pass empty object to inherit target property from the parent, i.e.: */{}); // 1/4) register Konvelte component step  
+        KonvelteComponentRegisterInstance.forEach((val, idx, _arr)=>{
+            _arr[idx] = new KonvelteComponentRegister.KonvelteCircle({
             /*  
             
             props: {
@@ -40,15 +41,18 @@
                 stroke: 'black',
                 strokeWidth: 4,
                 draggable: true,
-        }) // enqueue the Konvelte component 2/2) step
-        
-        // CRUCIAL BLOCK : PLEASE DO NOT FORGET TO INVOKE requestAnimationFrame as follows 
-        requestAnimationFrame(()=>{
-            layer.add(KonvelteComponentRegisterInstance)
-            layer.draw()
+            }) // 2/4) enqueue the Konvelte component
+            layer.add(_arr[idx])
         })
+        
+        // ANNOT : THIS MAY BE REMOVED WITHIN A COUPLE OF UPCOMING COMMITS 
+        // // CRUCIAL_LINE : PLEASE DO NOT FORGET TO INVOKE requestAnimationFrame : 
+        // requestAnimationFrame(()=>{
+        //     /* layer.add(KonvelteComponentRegisterInstance) */// 3/4)
+        //     /* layer.draw() */ 4/4)
+        // })
 
-        stage.setAttr('height', window.innerHeight); // # FIXES HEIGHT SCALING
+        stage.setAttr('height', window.innerHeight); // # FIXES HEIGHT SCALING ISSUE
     
     }
 
@@ -64,7 +68,7 @@
         width: 960,
         height: 480,
     });
-    globalThis.KONVA_GLOBAL__STAGE = stage; // KONVA GLOBAL (DEBUGGING PURPOSES ONLY) : ON PROD SHOULD BE REMOVED
+    globalThis.KONVA_GLOBAL__STAGE = stage; // KONVA GLOBAL (DEBUGGING PURPOSES ONLY)
 
     layer = new Konva.Layer();
     stage.add(layer);
