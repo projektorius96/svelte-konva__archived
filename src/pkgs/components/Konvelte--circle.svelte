@@ -1,8 +1,8 @@
 <script>
 import Konva from 'konva';
-export function KonvektCircle(options){
+export function KonvelteCircle(options){
     /* console.log("OPTIONS", options) */ // [PASSED]
-    console.log("props", $$props) // [PASSED]
+    /* console.log("props", $$props) */ // [PASSED]
     const {
         x,
         y,

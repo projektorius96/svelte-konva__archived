@@ -1,1 +1,1 @@
-    ./pkgs directory will be denoted for named exports (packages) such as {stage, layer, group, shapes, etc.}
+    ./pkgs directory will be denoted for default exports (packages) such as shape packages e.g. {circle, rect, etc.}

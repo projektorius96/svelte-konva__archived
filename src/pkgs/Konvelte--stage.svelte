@@ -2,7 +2,7 @@
     
     import {onMount} from 'svelte';
     import Konva from 'konva';
-    import {default as KonvektCircle} from './pseudo-components/KonvektShapeFactories.svelte'
+    import {default as KonvelteCircle} from './components/Konvelte--circle.svelte'
     
     let isMounted = false;
     let stage, layer = [undefined, undefined];
@@ -10,31 +10,42 @@
 
     $: if(isMounted) {
 
-        console.log("$$props at Konvelte--stage: ", $$props.props);
+        console.log("--Konvelte--stage $$props: ", $$props.props);
 
     }
 
     $: if (stage && layer && KonvaCirclePrefix) {
-        /* === */
+        
         console.log("KonvaCirclePrefix?", KonvaCirclePrefix)
-        KonvaCirclePrefixInstance = /* new  */KonvaCirclePrefix.KonvektCircle({
+        
+        KonvaCirclePrefixInstance = KonvaCirclePrefix.KonvelteCircle({
             props: {
                 stage
             },
-            x: 50,
-            y: 50,
-            radius: 60,
-            fill: 'red',
-            stroke: 'black',
-            strokeWidth: 4,
-            draggable: true,
-        }) // as if ComponentRoot.ExportedNamedFunction.bind(ComponentRoot [defined:at^1]) 
-        console.log("KonvaCirclePrefixInstance?", KonvaCirclePrefixInstance, stage, layer);
+                x: stage.width() / 2,
+                y: window.innerHeight / 2,
+                radius: 120,
+                fill: 'red',
+                stroke: 'black',
+                strokeWidth: 4,
+                draggable: true,
+        })
+        console.log("KonvaCirclePrefixInstance?, stage, layer", KonvaCirclePrefixInstance, stage, layer);
+        
+        // CRUCIAL BLOCK : PLEASE DO NOT FORGET TO INVOKE requestAnimationFrame as follows 
+        requestAnimationFrame(()=>{
+            layer.add(KonvaCirclePrefixInstance)
+            layer.draw()
+        })
+        
     }
 
     $: if (isMounted) {
+    
+        KonvaCirclePrefix = new KonvelteCircle({})
 
-    /* [at^1]: */KonvaCirclePrefix = new KonvektCircle({})
+        stage.setAttr('height', window.innerHeight); // # FIXES HEIGHT SCALING
+    
     }
 
     onMount(()=>{
@@ -53,17 +64,5 @@
 
     layer = new Konva.Layer()
     stage.add(layer)
-
-    requestAnimationFrame(()=>{
-            layer.add(KonvaCirclePrefixInstance)
-            layer.draw()
-    })
-
-    
-    // new Konva.Stage({
-    //     container: $$props.stageConfig.container,
-    //     // width: $$props.stageConfig.width,
-    //     // height: $$props.stageConfig.height,
-    // })
 
 </script>
