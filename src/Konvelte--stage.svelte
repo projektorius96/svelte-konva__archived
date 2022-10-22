@@ -6,14 +6,8 @@
     import {KonvelteComponentRegister as Register} from './utils/KonvelteComponentRegister'
     
     let isMounted = false;
-    let k = 10;
     let [stage, layer] = [undefined, undefined];
-    /* let [KonvelteComponentRegister, KonvelteComponentRegisterInstance] = [undefined, Array(k).fill(0)]; */// # DEV_NOTE : I AM COMMENTING THIS OUT, WILL GET BACK TO THIS SOON [1/2] :
-    let {_this} = Register(KonvelteCircle)
-    
-    // $: if (stage && layer/*  && KonvelteComponentRegister */) {
-    //     console.log("stage && layer && KonvelteComponentRegister?", stage, layer, KonvelteComponentRegister) 
-    // }
+    let {_this} = Register(KonvelteCircle); let k = 10;
 
     $: if (isMounted) {
 
@@ -27,36 +21,9 @@
 
         layer = new Konva.Layer();
         stage.add(layer);
-
-        layer.add(_this.KonvelteCircle({
-                x: stage.width() / 2,
-                y: window.innerHeight / 2,
-                radius: 120,
-                fill: 'red',
-                stroke: 'black',
-                strokeWidth: 4,
-                draggable: true,
-        }))
-    
-        // DEV_NOTE : I AM COMMENTING THIS OUT, WILL GET BACK TO THIS SOON [2/2] :
-        // KonvelteComponentRegister
-        // = new KonvelteCircle(
-        // /* {
-        //     target: $$props.props.sharedTarget,
-        // }
-        // *//* NOTE : instead, just pass empty object to inherit target property from the parent, i.e.: */
-        // {}
-        // ); // 1/4) register Konvelte component step  
-        // KonvelteComponentRegisterInstance.forEach((val, idx, _arr)=>{
-            
-        //     _arr[idx] = new KonvelteComponentRegister.KonvelteCircle({
-        //     /*  
-            
-        //     props: {
-        //         stage // pass the stage via dedicated props attribute as if <KonvelteCircle props={stage} />
-        //     }, 
-            
-        //     */
+        
+        // A) SINGLE SHAPE (ONE CIRCLE) : DUE TO LIMITED APPLICABILITY I WILL REMOVE THIS CASE A) WITHIN NEXT COUPLE OF COMMITS
+        // layer.add(_this.KonvelteCircle({
         //         x: stage.width() / 2,
         //         y: window.innerHeight / 2,
         //         radius: 120,
@@ -64,10 +31,23 @@
         //         stroke: 'black',
         //         strokeWidth: 4,
         //         draggable: true,
-        //     }) // 2/4) enqueue the Konvelte component
-        //     layer.add(_arr[idx])
-
-        // })
+        // }))
+        
+        // B) MULTIPLE K_TH-TUPLE OF SHAPES (i.e. CIRCLES)
+        Array(k).fill(0).forEach((_, idx, _arr)=>{
+            _arr[idx] = _this.KonvelteCircle({
+                x: stage.width() / 2,
+                y: window.innerHeight / 2,
+                radius: 120,
+                fill: 'red',
+                stroke: 'black',
+                strokeWidth: 4,
+                draggable: true,
+            })
+            if (idx == _arr.length - 1) {
+                layer.add(..._arr)
+            }
+        })
     
     }
 
