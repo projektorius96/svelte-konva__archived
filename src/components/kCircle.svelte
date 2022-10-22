@@ -1,6 +1,6 @@
 <script>
 import Konva from 'konva';
-export function KonvelteCircle(options){
+export function Circle(options){
     /* console.log("OPTIONS", options) */ // [PASSED]
     /* console.log("props", $$props) */ // [PASSED]
     const {

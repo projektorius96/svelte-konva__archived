@@ -1,4 +1,4 @@
-import Konvelte from './Konvelte--app.svelte';
+import Konvelte from './KonvelteApp.svelte';
 
 // @https://svelte.dev/docs#run-time-custom-element-api
 const container = document.querySelector('#container')

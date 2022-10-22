@@ -2,12 +2,12 @@
     
     import {onMount} from 'svelte';
     import Konva from 'konva';
-    import {default as KonvelteCircle} from './components/Konvelte--circle.svelte'
+    import {default as Circle} from './components/kCircle.svelte'
     import {KonvelteComponentRegister as Register} from './utils/KonvelteComponentRegister'
     
     let isMounted = false;
     let [stage, layer] = [undefined, undefined];
-    let {_this} = Register(KonvelteCircle); let k = 10;
+    let {Konvelte} = Register(Circle); let k = 10;
 
     $: if (isMounted) {
 
@@ -23,7 +23,7 @@
         stage.add(layer);
         
         // A) SINGLE SHAPE (ONE CIRCLE) : DUE TO LIMITED APPLICABILITY I WILL REMOVE THIS CASE A) WITHIN NEXT COUPLE OF COMMITS
-        // layer.add(_this.KonvelteCircle({
+        // layer.add(Konvelte.Circle({
         //         x: stage.width() / 2,
         //         y: window.innerHeight / 2,
         //         radius: 120,
@@ -35,7 +35,7 @@
         
         // B) MULTIPLE K_TH-TUPLE OF SHAPES (i.e. CIRCLES)
         Array(k).fill(0).forEach((_, idx, _arr)=>{
-            _arr[idx] = _this.KonvelteCircle({
+            _arr[idx] = Konvelte.Circle({
                 x: stage.width() / 2,
                 y: window.innerHeight / 2,
                 radius: 120,
