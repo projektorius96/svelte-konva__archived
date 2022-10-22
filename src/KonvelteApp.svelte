@@ -1,11 +1,11 @@
-
-<Stage props={$$props}/><!-- Stage Instance -->
+<Stage props={$$props} width={1000} height={500} /><!-- Register the Stage -->
 
 <script>
 
     import svelte, {onMount} from 'svelte';
-    import Stage from './Konvelte--stage.svelte'
+    import Stage from './kStage.svelte'
 
+    // lexical variables
     let isMounted;
     
     // TIP : this is top-level useEffect-like reactive statement

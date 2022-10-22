@@ -2,19 +2,24 @@
     
     import {onMount} from 'svelte';
     import Konva from 'konva';
-    import {default as KonvelteCircle} from './components/Konvelte--circle.svelte'
+    import {default as Circle} from './components/kCircle.svelte'
     import {KonvelteComponentRegister as Register} from './utils/KonvelteComponentRegister'
     
+    // lexical props
+    export let width = null;
+    export let height = null;
+    
+    // lexical variables
     let isMounted = false;
     let [stage, layer] = [undefined, undefined];
-    let {_this} = Register(KonvelteCircle); let k = 10;
+    let {Konvelte} = Register(Circle); let k = 10;
 
     $: if (isMounted) {
 
         stage = new Konva.Stage({
-            container: /* 'container' */$$props.props.sharedTarget,
-            width: 960,
-            height: 480,
+            container: $$props.props.sharedTarget,
+            width: width || 960,
+            height: height || 480,
         });
         stage.setAttr('height', window.innerHeight); // # FIXES HEIGHT SCALING ISSUE
         globalThis.KONVA_GLOBAL__STAGE = stage; // KONVA GLOBAL (DEBUGGING PURPOSES ONLY)
@@ -22,20 +27,8 @@
         layer = new Konva.Layer();
         stage.add(layer);
         
-        // A) SINGLE SHAPE (ONE CIRCLE) : DUE TO LIMITED APPLICABILITY I WILL REMOVE THIS CASE A) WITHIN NEXT COUPLE OF COMMITS
-        // layer.add(_this.KonvelteCircle({
-        //         x: stage.width() / 2,
-        //         y: window.innerHeight / 2,
-        //         radius: 120,
-        //         fill: 'red',
-        //         stroke: 'black',
-        //         strokeWidth: 4,
-        //         draggable: true,
-        // }))
-        
-        // B) MULTIPLE K_TH-TUPLE OF SHAPES (i.e. CIRCLES)
         Array(k).fill(0).forEach((_, idx, _arr)=>{
-            _arr[idx] = _this.KonvelteCircle({
+            _arr[idx] = Konvelte.Circle({
                 x: stage.width() / 2,
                 y: window.innerHeight / 2,
                 radius: 120,
