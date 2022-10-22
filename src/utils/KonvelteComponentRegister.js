@@ -3,6 +3,6 @@ export function KonvelteComponentRegister(_this) {
     let _component = _this;
     let _self = new _component({});
     return {
-        _this : _self
+        Konvelte : _self
     };
 }
