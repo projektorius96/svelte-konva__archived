@@ -5,6 +5,11 @@
     import {default as Circle} from './components/kCircle.svelte'
     import {KonvelteComponentRegister as Register} from './utils/KonvelteComponentRegister'
     
+    // lexical props
+    export let width = null;
+    export let height = null;
+    
+    // lexical variables
     let isMounted = false;
     let [stage, layer] = [undefined, undefined];
     let {Konvelte} = Register(Circle); let k = 10;
@@ -12,9 +17,9 @@
     $: if (isMounted) {
 
         stage = new Konva.Stage({
-            container: /* 'container' */$$props.props.sharedTarget,
-            width: 960,
-            height: 480,
+            container: $$props.props.sharedTarget,
+            width: width || 960,
+            height: height || 480,
         });
         stage.setAttr('height', window.innerHeight); // # FIXES HEIGHT SCALING ISSUE
         globalThis.KONVA_GLOBAL__STAGE = stage; // KONVA GLOBAL (DEBUGGING PURPOSES ONLY)
