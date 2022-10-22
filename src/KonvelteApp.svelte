@@ -1,5 +1,5 @@
 
-<Stage props={$$props}/><!-- Stage Instance -->
+<Stage props={$$props}/><!-- Register the Stage -->
 
 <script>
 

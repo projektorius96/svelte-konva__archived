@@ -22,18 +22,6 @@
         layer = new Konva.Layer();
         stage.add(layer);
         
-        // A) SINGLE SHAPE (ONE CIRCLE) : DUE TO LIMITED APPLICABILITY I WILL REMOVE THIS CASE A) WITHIN NEXT COUPLE OF COMMITS
-        // layer.add(Konvelte.Circle({
-        //         x: stage.width() / 2,
-        //         y: window.innerHeight / 2,
-        //         radius: 120,
-        //         fill: 'red',
-        //         stroke: 'black',
-        //         strokeWidth: 4,
-        //         draggable: true,
-        // }))
-        
-        // B) MULTIPLE K_TH-TUPLE OF SHAPES (i.e. CIRCLES)
         Array(k).fill(0).forEach((_, idx, _arr)=>{
             _arr[idx] = Konvelte.Circle({
                 x: stage.width() / 2,
