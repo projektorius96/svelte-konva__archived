@@ -4,7 +4,7 @@
     import Konva from 'konva';
     import {default as Circle} from './components/kCircle.svelte';
     import {default as Layer} from './components/kLayer.svelte';
-    import {KonvelteComponentRegister as Register} from './utils/KonvelteComponentRegister';
+    import {KonvelteComponentRegister as Register, KonvelteComponentEnqueuer as Enqueuer} from './utils/KonvelteComponentRegister';
     
     // lexical props
     export let width = null;
