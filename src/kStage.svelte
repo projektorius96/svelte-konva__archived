@@ -1,10 +1,10 @@
 <script>
     
     import {onMount} from 'svelte';
-    import Konva from 'konva';
+    import {Stage} from 'konva/lib/Stage';
     import {default as Circle} from './components/kCircle.svelte';
     import {default as Layer} from './components/kLayer.svelte';
-    import {KonvelteComponentRegister as Register, KonvelteComponentEnqueuer as Enqueuer} from './utils/KonvelteComponentRegister';
+    import {/* KonvelteComponentRegister as Register,  */KonvelteComponentEnqueuer as Enqueuer} from './utils/KonvelteComponentRegister';
     
     // lexical props
     export let width = null;
@@ -12,43 +12,37 @@
     
     // lexical variables
     let isMounted = false;
-    let [stage, layer] = [undefined, undefined];
-    
+    let stage = undefined;
+    let k = 10;
+
     // lexical Registers
-    let CircleInstance0 = Register(Circle); let k = 10;
-/*     let LayerInstance0 = Register(Layer); */
     let LayerInstance1 = Enqueuer(Layer);
+    // let CircleInstance0 = /* Register(Circle) */Enqueuer(Circle, {
+    //             x: stage.width() / 2,
+    //             y: window.innerHeight / 2,
+    //             radius: 120,
+    //             fill: 'red',
+    //             stroke: 'black',
+    //             strokeWidth: 4,
+    //             draggable: true,
+    // })
 
-    $: if (LayerInstance1) console.log(LayerInstance1);
+    // $: if (LayerInstance1) console.log(LayerInstance1);
+    // $: if (stage && Enqueuer) {
+    //     console.log("Enqueuer (useEffect)", Enqueuer(Circle, {
+    //             x: stage.width() / 2,
+    //             y: window.innerHeight / 2,
+    //             radius: 120,
+    //             fill: 'red',
+    //             stroke: 'black',
+    //             strokeWidth: 4,
+    //             draggable: true,
+    //     }))
+    // }
 
-    $: if (stage && Enqueuer) {
-        console.log("Enqueuer (useEffect)", Enqueuer(Circle, {
-                x: stage.width() / 2,
-                y: window.innerHeight / 2,
-                radius: 120,
-                fill: 'red',
-                stroke: 'black',
-                strokeWidth: 4,
-                draggable: true,
-        }))
-    }
-
-    $: if (isMounted) {
-
-        stage = new Konva.Stage({
-            container: $$props.props.sharedTarget,
-            width: width || 960,
-            height: height || 480,
-        });
-        stage.setAttr('height', window.innerHeight); // # FIXES HEIGHT SCALING ISSUE
-        
-        /* globalThis.KONVA_GLOBAL__STAGE = stage; */ // KONVA GLOBAL (DEBUGGING PURPOSES ONLY)
-
-        // layer = LayerInstance1/* .Layer() */
-        stage.add(LayerInstance1);
-        
+    $: if(stage) {
         Array(k).fill(0).forEach((_, idx, _arr)=>{
-            _arr[idx] = CircleInstance0.Circle({
+            _arr[idx] = Enqueuer(Circle, {
                 x: stage.width() / 2,
                 y: window.innerHeight / 2,
                 radius: 120,
@@ -61,12 +55,26 @@
                 LayerInstance1.add(..._arr)
             }
         })
-    
+    }
+
+    $: if (isMounted) {
+
+        stage = new /* Konva. */Stage({
+            container: $$props.props.sharedTarget,
+            width: width || 960,
+            height: height || 480,
+        });
+        stage.setAttr('height', window.innerHeight); // # FIXES HEIGHT SCALING ISSUE
+        
+        /* globalThis.KONVA_GLOBAL__STAGE = stage; */ // KONVA GLOBAL (DEBUGGING PURPOSES ONLY)
+
+        // layer = LayerInstance1/* .Layer() */
+        stage.add(LayerInstance1);
     }
 
     onMount(()=>{
 
-        /* console.log("What are --Konvelte--stage dependent $$props.props?", $$props.props); */
+        /* console.log("$$props.props at [pathspec].svelte", $$props.props); */
         console.log("onMount ([pathspec].svelte)");
         isMounted = true;
 
