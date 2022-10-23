@@ -11,18 +11,18 @@
     // TIP : this is top-level useEffect-like reactive statement
     $: if (isMounted) {
 
-        console.log("--App $$props: ", $$props)
+        console.log("--KonvelteApp $$props: ", $$props)
 
     }
 
     onMount(()=>{
         
         isMounted = true;
-        console.log("onMount ([pathspec].svelte)");
+        console.log("onMount at [pathspec].svelte");
         
         // - in case of onDestroy internal call, do (return) the following :
         return (()=>{
-            console.log("onDestroy ([pathspec].svelte)");
+            console.log("onDestroy at [pathspec].svelte");
         })
 
     })

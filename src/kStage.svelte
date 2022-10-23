@@ -1,9 +1,10 @@
 <script>
     
     import {onMount} from 'svelte';
-    import Konva from 'konva';
-    import {default as Circle} from './components/kCircle.svelte'
-    import {KonvelteComponentRegister as Register} from './utils/KonvelteComponentRegister'
+    import {Stage} from 'konva/lib/Stage';
+    import {default as Circle} from './components/kCircle.svelte';
+    import {default as Layer} from './components/kLayer.svelte';
+    import {KonvelteComponentEnqueuer as Enqueuer} from './utils/KonvelteComponentRegister';
     
     // lexical props
     export let width = null;
@@ -11,24 +12,18 @@
     
     // lexical variables
     let isMounted = false;
-    let [stage, layer] = [undefined, undefined];
-    let {Konvelte} = Register(Circle); let k = 10;
+    let stage = undefined;
+    let k = 10; // KTH-tuple of Konva.Shape(s)
 
-    $: if (isMounted) {
+    // lexical Registers
+    let LayerInstance1 = Enqueuer(Layer);
+    $: if(stage && LayerInstance1) {
 
-        stage = new Konva.Stage({
-            container: $$props.props.sharedTarget,
-            width: width || 960,
-            height: height || 480,
-        });
-        stage.setAttr('height', window.innerHeight); // # FIXES HEIGHT SCALING ISSUE
-        globalThis.KONVA_GLOBAL__STAGE = stage; // KONVA GLOBAL (DEBUGGING PURPOSES ONLY)
+        stage.add(LayerInstance1);
 
-        layer = new Konva.Layer();
-        stage.add(layer);
-        
         Array(k).fill(0).forEach((_, idx, _arr)=>{
-            _arr[idx] = Konvelte.Circle({
+            
+            _arr[idx] = Enqueuer(Circle, {
                 x: stage.width() / 2,
                 y: window.innerHeight / 2,
                 radius: 120,
@@ -38,16 +33,32 @@
                 draggable: true,
             })
             if (idx == _arr.length - 1) {
-                layer.add(..._arr)
+                LayerInstance1.add(..._arr)
             }
+
         })
-    
+
+        globalThis.LayerInstance1 = LayerInstance1; /* <= DEBUGGING PURPOSE ONLY *//* LayerInstance1.destroy() */// [PASSED]
+
+    }
+
+    $: if (isMounted) {
+
+        stage = new /* Konva. */Stage({
+            container: $$props.props.sharedTarget,
+            width: width || 960,
+            height: height || 480,
+        });
+        stage.setAttr('height', window.innerHeight); // # FIXES HEIGHT SCALING ISSUE
+        
+        /* globalThis.KONVA_GLOBAL__STAGE = stage; */ // KONVA GLOBAL (DEBUGGING PURPOSES ONLY)
+
     }
 
     onMount(()=>{
 
-        /* console.log("What are --Konvelte--stage dependent $$props.props?", $$props.props); */
-        console.log("onMount ([pathspec].svelte)");
+        console.log("$$props.props at [pathspec].svelte", $$props.props);
+        console.log("onMount at [pathspec].svelte");
         isMounted = true;
 
     })
