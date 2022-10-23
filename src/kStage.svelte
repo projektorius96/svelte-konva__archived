@@ -16,7 +16,22 @@
     
     // lexical Registers
     let CircleInstance0 = Register(Circle); let k = 10;
-    let LayerInstance0 = Register(Layer);
+/*     let LayerInstance0 = Register(Layer); */
+    let LayerInstance1 = Enqueuer(Layer);
+
+    $: if (LayerInstance1) console.log(LayerInstance1);
+
+    $: if (stage && Enqueuer) {
+        console.log("Enqueuer (useEffect)", Enqueuer(Circle, {
+                x: stage.width() / 2,
+                y: window.innerHeight / 2,
+                radius: 120,
+                fill: 'red',
+                stroke: 'black',
+                strokeWidth: 4,
+                draggable: true,
+        }))
+    }
 
     $: if (isMounted) {
 
@@ -29,8 +44,8 @@
         
         /* globalThis.KONVA_GLOBAL__STAGE = stage; */ // KONVA GLOBAL (DEBUGGING PURPOSES ONLY)
 
-        layer = LayerInstance0.Layer()
-        stage.add(layer);
+        // layer = LayerInstance1/* .Layer() */
+        stage.add(LayerInstance1);
         
         Array(k).fill(0).forEach((_, idx, _arr)=>{
             _arr[idx] = CircleInstance0.Circle({
@@ -43,7 +58,7 @@
                 draggable: true,
             })
             if (idx == _arr.length - 1) {
-                layer.add(..._arr)
+                LayerInstance1.add(..._arr)
             }
         })
     

@@ -5,9 +5,11 @@ export function KonvelteComponentRegister(_this) {
     return _self;
 }
 
-export function KonvelteComponentEnqueuer(reg, base, _props = {}){
-    let innerReg = reg(base);
+export function KonvelteComponentEnqueuer(/* reg,  */base, _props = {}){
+    let innerReg = /* reg */KonvelteComponentRegister(base);
     let innerBase = innerReg.$$.ctx[0]
-    console.log("KonvelteComponentEnqueuer [PROPOSAL]", innerBase(_props))
-    return innerBase(_props);
+    /* console.log("KonvelteComponentEnqueuer [PROPOSAL]", innerBase(_props)) */
+    return (
+        new innerBase(_props)
+    );
 }
