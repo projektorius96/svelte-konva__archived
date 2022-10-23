@@ -2,8 +2,9 @@
     
     import {onMount} from 'svelte';
     import Konva from 'konva';
-    import {default as Circle} from './components/kCircle.svelte'
-    import {KonvelteComponentRegister as Register} from './utils/KonvelteComponentRegister'
+    import {default as Circle} from './components/kCircle.svelte';
+    import {default as Layer} from './components/kLayer.svelte';
+    import {KonvelteComponentRegister as Register} from './utils/KonvelteComponentRegister';
     
     // lexical props
     export let width = null;
@@ -12,7 +13,10 @@
     // lexical variables
     let isMounted = false;
     let [stage, layer] = [undefined, undefined];
-    let {Konvelte} = Register(Circle); let k = 10;
+    
+    // lexical Registers
+    let CircleInstance0 = Register(Circle); let k = 10;
+    let LayerInstance0 = Register(Layer);
 
     $: if (isMounted) {
 
@@ -22,13 +26,14 @@
             height: height || 480,
         });
         stage.setAttr('height', window.innerHeight); // # FIXES HEIGHT SCALING ISSUE
-        globalThis.KONVA_GLOBAL__STAGE = stage; // KONVA GLOBAL (DEBUGGING PURPOSES ONLY)
+        
+        /* globalThis.KONVA_GLOBAL__STAGE = stage; */ // KONVA GLOBAL (DEBUGGING PURPOSES ONLY)
 
-        layer = new Konva.Layer();
+        layer = LayerInstance0.Layer()
         stage.add(layer);
         
         Array(k).fill(0).forEach((_, idx, _arr)=>{
-            _arr[idx] = Konvelte.Circle({
+            _arr[idx] = CircleInstance0.Circle({
                 x: stage.width() / 2,
                 y: window.innerHeight / 2,
                 radius: 120,
