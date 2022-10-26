@@ -1,8 +1,6 @@
 <script>
-import Konva from 'konva';
-export function Circle(options){
-    /* console.log("OPTIONS", options) */ // [PASSED]
-    /* console.log("props", $$props) */ // [PASSED]
+import {Circle}from 'konva/lib/shapes/Circle';
+export function kCircle(options){
     const {
         x,
         y,
@@ -12,7 +10,7 @@ export function Circle(options){
         strokeWidth,
         draggable,
     } = options;
-    let shapeInstance = new Konva.Circle({
+    let shapeInstance = new /* Konva. */Circle({
             x,
             y,
             radius,
@@ -20,7 +18,7 @@ export function Circle(options){
             stroke,
             strokeWidth,
             draggable,
-            // name: "circle" // # should reflect function's name
+            /* name: "circle" */ // # should reflect function's name
     })
     
     return shapeInstance;
