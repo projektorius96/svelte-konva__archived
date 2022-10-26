@@ -17,8 +17,10 @@
 
     // lexical Registers
     let LayerInstance1 = Enqueuer(kLayer);
+    globalThis.LayerInstance1 = LayerInstance1; /* <= (DEBUGGING PURPOSES ONLY) *//* LayerInstance1.destroy() */// [PASSED]
     $: if(stage && LayerInstance1) {
 
+    LayerInstance1: 
     (        stage.add(LayerInstance1) && Array(k).fill(0).forEach((_, idx, _arr)=>{
             
             _arr[idx] = Enqueuer(kCircle, {
@@ -30,14 +32,13 @@
                 strokeWidth: 4,
                 draggable: true,
             })
-                // at the very last index (idx) give completely filled up array (_arr)
+                // at the very last index (idx) provide me with completely filled up array (_arr)
                 if (idx == _arr.length - 1) {
                     LayerInstance1.add(..._arr);
                 }
-
         })
+        
     )
-        globalThis.LayerInstance1 = LayerInstance1; /* <= DEBUGGING PURPOSE ONLY *//* LayerInstance1.destroy() */// [PASSED]
 
     }
 
@@ -50,7 +51,7 @@
         });
         stage.setAttr('height', window.innerHeight); // # FIXES HEIGHT SCALING ISSUE
         
-        /* globalThis.KONVA_GLOBAL__STAGE = stage; */ // KONVA GLOBAL (DEBUGGING PURPOSES ONLY)
+        /* globalThis.KONVA_GLOBAL__STAGE = stage; *//* <= (DEBUGGING PURPOSES ONLY) *//* KONVA_GLOBAL__STAGE.getLayers() */// [PASSED]
 
     }
 
