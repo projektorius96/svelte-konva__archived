@@ -2,8 +2,8 @@
     
     import {onMount} from 'svelte';
     import {Stage} from 'konva/lib/Stage';
-    import {default as Circle} from './components/kCircle.svelte';
-    import {default as Layer} from './components/kLayer.svelte';
+    import {default as kCircle} from './components/kCircle.svelte';
+    import {default as kLayer} from './components/kLayer.svelte';
     import {KonvelteComponentEnqueuer as Enqueuer} from './utils/KonvelteComponentRegister';
     
     // lexical props
@@ -16,14 +16,12 @@
     let k = 10; // KTH-tuple of Konva.Shape(s)
 
     // lexical Registers
-    let LayerInstance1 = Enqueuer(Layer);
+    let LayerInstance1 = Enqueuer(kLayer);
     $: if(stage && LayerInstance1) {
 
-        stage.add(LayerInstance1);
-
-        Array(k).fill(0).forEach((_, idx, _arr)=>{
+    (        stage.add(LayerInstance1) && Array(k).fill(0).forEach((_, idx, _arr)=>{
             
-            _arr[idx] = Enqueuer(Circle, {
+            _arr[idx] = Enqueuer(kCircle, {
                 x: stage.width() / 2,
                 y: window.innerHeight / 2,
                 radius: 120,
@@ -32,12 +30,13 @@
                 strokeWidth: 4,
                 draggable: true,
             })
-            if (idx == _arr.length - 1) {
-                LayerInstance1.add(..._arr)
-            }
+                // at the very last index (idx) give completely filled up array (_arr)
+                if (idx == _arr.length - 1) {
+                    LayerInstance1.add(..._arr);
+                }
 
         })
-
+    )
         globalThis.LayerInstance1 = LayerInstance1; /* <= DEBUGGING PURPOSE ONLY *//* LayerInstance1.destroy() */// [PASSED]
 
     }
