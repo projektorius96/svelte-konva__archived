@@ -1,12 +1,12 @@
-import Konvelte from './KonvelteApp.svelte';
+import App from './kApp.svelte';
 
-// @https://svelte.dev/docs#run-time-custom-element-api
+// For more : @https://svelte.dev/docs#run-time-custom-element-api
 const container = document.querySelector('#container')
-const svelte_konva = new Konvelte({
+const SvelteKonva = new App({
     target: container,
     props: {
         sharedTarget: container,
     }
 });
 
-export default svelte_konva;
+export default SvelteKonva;

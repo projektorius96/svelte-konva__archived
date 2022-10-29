@@ -7,24 +7,26 @@
     import {KonvelteComponentEnqueuer as Enqueuer} from './utils/KonvelteComponentRegister';
     
     // lexical props
-    export let width = null;
-    export let height = null;
+    export let width = undefined;
+    export let height = undefined;
+    export let container = null;
     
     // lexical variables
     let isMounted = false;
-    let stage = undefined;
+    let theStage = undefined;
     let k = 10; // KTH-tuple of Konva.Shape(s)
 
     // lexical Registers
     let LayerInstance1 = Enqueuer(kLayer);
-    globalThis.LayerInstance1 = LayerInstance1; /* <= (DEBUGGING PURPOSES ONLY) *//* LayerInstance1.destroy() */// [PASSED]
-    $: if(stage && LayerInstance1) {
+    globalThis.LayerInstance1 = LayerInstance1;/* <= (DEBUGGING PURPOSES ONLY) *//* LayerInstance1.destroy() */// [PASSED]
+    $: if(theStage && LayerInstance1) {
 
+    // JS_native_label_signatureCOLON
     LayerInstance1: 
-    (        stage.add(LayerInstance1) && Array(k).fill(0).forEach((_, idx, _arr)=>{
+    (        theStage.add(LayerInstance1) && Array(k).fill(0).forEach((_, idx, _arr)=>{
             
             _arr[idx] = Enqueuer(kCircle, {
-                x: stage.width() / 2,
+                x: theStage.width() / 2,
                 y: window.innerHeight / 2,
                 radius: 120,
                 fill: 'red',
@@ -40,24 +42,39 @@
         
     )
 
+    // ===
+
+    LayerInstanceXth: 
+    (        
+        true && true /* <= Your SvelteKonva (Konvelte) custom logic goes herein..; 
+        please refer to LayerInstance1 as for an example how to register (enqueue) components..;
+        
+        === TIP: Registering (Enqueueing) is recommended as it makes codebase less verbose ! 
+
+                                ENJOY THE CODING WITH SVELTE&KONVA
+
+        */
+    )
+
+    // ===
+
     }
 
-    $: if (isMounted) {
+    $: if (isMounted && Stage) {
 
-        stage = new /* Konva. */Stage({
-            container: $$props.props.sharedTarget,
+        theStage = new /* Konva. */Stage({
+            container: $$props.props.sharedTarget || container || document.body,
             width: width || 960,
             height: height || 480,
         });
-        stage.setAttr('height', window.innerHeight); // # FIXES HEIGHT SCALING ISSUE
-        
-        /* globalThis.KONVA_GLOBAL__STAGE = stage; *//* <= (DEBUGGING PURPOSES ONLY) *//* KONVA_GLOBAL__STAGE.getLayers() */// [PASSED]
+        theStage.setAttr('height', window.innerHeight); // # FIXES HEIGHT SCALING ISSUE
+        /* globalThis.KONVA_GLOBAL__STAGE = theStage; *//* <= (DEBUGGING PURPOSES ONLY) *//* KONVA_GLOBAL__STAGE.getLayers() */// [PASSED]
 
     }
 
     onMount(()=>{
 
-        console.log("$$props.props at [pathspec].svelte", $$props.props);
+        console.log("$$props.props at [pathspec].svelte", $$props.props.sharedTarget);
         console.log("onMount at [pathspec].svelte");
         isMounted = true;
 
