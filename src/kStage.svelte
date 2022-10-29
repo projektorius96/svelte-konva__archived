@@ -6,6 +6,11 @@
     import {default as kLayer} from './components/kLayer.svelte';
     import {KonvelteComponentEnqueuer as Enqueuer} from './utils/KonvelteComponentRegister';
     
+    // constants
+    const verticalScrollbarWidth = (document.body.clientWidth - window.innerWidth);
+    const fullViewportWidth = (document.body.clientWidth - verticalScrollbarWidth);
+    const fullViewportHeight = window.innerHeight;
+    
     // lexical props
     export let width = undefined;
     export let height = undefined;
@@ -51,7 +56,7 @@
         
         === TIP: Registering (Enqueueing) is recommended as it makes codebase less verbose ! 
 
-                                ENJOY THE CODING WITH SVELTE&KONVA
+                            \m.m/ ENJOY THE CODING WITH SVELTE&KONVA \m.m/
 
         */
     )
@@ -64,10 +69,11 @@
 
         theStage = new /* Konva. */Stage({
             container: $$props.props.sharedTarget || container || document.body,
-            width: width || 960,
-            height: height || 480,
+            width: width /* <= from props */ || 960 /* <= DEFAULTS */,
+            height: height /* <= from props */ || 480 /* <= DEFAULTS */,
         });
-        theStage.setAttr('height', window.innerHeight); // # FIXES HEIGHT SCALING ISSUE
+        theStage.setAttr('height', fullViewportHeight); // # FIXES HEIGHT SCALING ISSUE
+        theStage.setAttr('width', fullViewportWidth); // # MAKES SURE VIEWPORT WIDTH EXCLUDES VERTICAL SCROLLBAR WIDTH
         /* globalThis.KONVA_GLOBAL__STAGE = theStage; *//* <= (DEBUGGING PURPOSES ONLY) *//* KONVA_GLOBAL__STAGE.getLayers() */// [PASSED]
 
     }

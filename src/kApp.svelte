@@ -31,7 +31,7 @@
 
 <style>
     
-    @import './styles/index.css';
+    @import './styles/index.css'; /* # DEV_NOTE: pathspec is relative from ./dist or any other directory wherein index.html should exist */
     
 </style>
 
