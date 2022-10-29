@@ -1,16 +1,12 @@
+# Project name: svelte-konva
+
 ### Motivation
 
 > Konva.js is Canvas API framework, which already has wrappers for React, Vue, but there is no (proper?) Svelte wrapper for Konva.js core . This is it ! Finally decided to write a minimum maintanable (live) Svelte wrapper for Konva : just like React, Vue, we can (& will) take advantage of Svelte for its simplicity, built-in state management with svelte/store, etc. 
 
 > I am starting a project as a solo initially, but may accept any PR request upon guidelines provided (_see Contributing section below_)
 
-### Prerequisite
-
-> 1.1) `npm i` (package.json) or `npm ci` to reproduce identical deps graph (package-lock.json)
-
-> 1.2) `npm run dev:serv`
-
-### References
+#### References
 
 - [Svelte.dev](https://svelte.dev/)
 - [Konva.js](https://konvajs.org/)
@@ -18,9 +14,37 @@
 
 ---
 
+### Installation
+
+    > If Installing via degit some errors would be thrown, otherwise try clone it manually on terminal or via GitHub desktop;
+
+    - Prerequisites for degit: npm i degit -g
+
+   Run the command on terminal : `degit projektorius96/svelte-konva#v1.0.0` # version may differ, but conforms with [semver](https://devhints.io/semver)
+
+- [Degit guidelines](https://github.com/Rich-Harris/degit)
+
+---
+
+### Development
+
+Simply run the command :
+
+> 1.1) `npm i` (package.json) or `npm ci` to reproduce identical deps graph (package-lock.json)
+
+> 1.2) `npm run dev:serv`
+
+---
+
 ### Contributing
 
-- [Guidelines](https://git-scm.com/book/en/v2/GitHub-Contributing-to-a-Project)
+- [Contributing guidelines](https://git-scm.com/book/en/v2/GitHub-Contributing-to-a-Project)
+
+Current goals :
+
+- [PINNED] contribute publishing the library (wrapper) on npm registry
+- [OTHERS] expand the list of components,..
+- [OTHERS] ...
 
 ---
 

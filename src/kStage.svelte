@@ -28,9 +28,10 @@
 
     // JS_native_label_signatureCOLON
     LayerInstance1: 
-    (        theStage.add(LayerInstance1) && Array(k).fill(0).forEach((_, idx, _arr)=>{
-            
-            _arr[idx] = Enqueuer(kCircle, {
+    (        
+        
+        theStage.add(LayerInstance1) && 
+        LayerInstance1.add(Enqueuer(kCircle, {
                 x: theStage.width() / 2,
                 y: window.innerHeight / 2,
                 radius: 120,
@@ -38,12 +39,7 @@
                 stroke: 'black',
                 strokeWidth: 4,
                 draggable: true,
-            })
-                // at the very last index (idx) provide me with completely filled up array (_arr)
-                if (idx == _arr.length - 1) {
-                    LayerInstance1.add(..._arr);
-                }
-        })
+        }))
         
     )
 
