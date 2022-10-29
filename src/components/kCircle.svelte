@@ -18,7 +18,7 @@ export function kCircle(options){
             stroke,
             strokeWidth,
             draggable,
-            /* name: "circle" */ // # should reflect function's name
+            name: "circle" /* # DEV_NOTE: should reflect callee.name */
     })
     
     return shapeInstance;
