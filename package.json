@@ -1,7 +1,7 @@
 {
   "name": "svelte-konva",
   "version": "1.0.0",
-  "description": "Svelte wrapper for Konva i.e. svelte-konva(a.k.a. Konvelte)",
+  "description": "Svelte wrapper for Konva i.e. svelte-konva (a.k.a. Konvelte)",
   "scripts": {
     "build": "webpack",
     "dev:serv": "webpack serve"
