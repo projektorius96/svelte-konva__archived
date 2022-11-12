@@ -10,7 +10,7 @@
   
 /* User-defined styling : */
 #container {
-  background-color: rgb(115, 115, 115);
+  background-color: white;
   display: flex;
   justify-content: center;
 /*   align-items: center; */
