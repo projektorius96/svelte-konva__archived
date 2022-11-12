@@ -6,7 +6,11 @@
     "build": "webpack",
     "dev:serv": "webpack serve"
   },
-  "keywords": ["svelte", "konva", "svelte-konva", "konvelte"],
+  "keywords": [
+    "svelte",
+    "konva",
+    "svelte-konva"
+  ],
   "author": "Lukas Gaucas (projektorius96)",
   "license": "MIT",
   "devDependencies": {
