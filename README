@@ -8,36 +8,29 @@
 
 ### Prerequisite
 
-> 1.1) Rollup installed globally for manual NPM LINKing i.e.: `npm install --global rollup`
+> 1.1) Rollup installed globally for manual NPM LINKing: 
+
+`npm install --global rollup` # refer to Installation section below
 
 > 1.2) `npm i` (package.json) or `npm ci` to reproduce identical deps graph (package-lock.json)
 
-> 1.3) `npm run dev:serv`
+> 1.3) `npm run dev:serv` to launch server on port as described in Webpack config.devServer.port
 
 ### References
 
 - [Svelte.dev](https://svelte.dev/)
 - [Rollupjs#installation](https://rollupjs.org/guide/en/#installation)
 - [Konva.js](https://konvajs.org/)
-- ...
 
 ---
 
 ### Installation
 
-    > If Installing via degit some errors would be thrown, otherwise try clone it manually on terminal or via GitHub desktop;
-
-    - Prerequisites for degit: npm i degit -g
-
-   Run the command on terminal : `degit projektorius96/svelte-konva#v1.0.0` # version may differ, but conforms with [semver](https://devhints.io/semver)
-
-- [Degit guidelines](https://github.com/Rich-Harris/degit)
+> NOTE: since v1.1.0 we renounce usage of degit, instead follow [NPM LINKING RECIPE](https://github.com/projektorius96/svelte-konva/blob/svelte-konva/dist/svelte-konva-linked/README.md) 
 
 ---
 
 ### Development
-
-Simply run the command :
 
 > 1.1) `npm i` (package.json) or `npm ci` to reproduce identical deps graph (package-lock.json)
 
@@ -45,15 +38,15 @@ Simply run the command :
 
 ---
 
+### Milestones 
+
+- keep expanding Konva.js features in **svelte-konva**
+
+---
+
 ### Contributing
 
 - [Contributing guidelines](https://git-scm.com/book/en/v2/GitHub-Contributing-to-a-Project)
-
-Current goals :
-
-- [PINNED] contribute publishing the library (wrapper) on npm registry
-- [OTHERS] expand the list of components,..
-- [OTHERS] ...
 
 ---
 
