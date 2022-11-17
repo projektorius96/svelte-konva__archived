@@ -14,7 +14,9 @@
   "author": "Lukas Gaucas (projektorius96)",
   "license": "MIT",
   "devDependencies": {
+    "@rollup/plugin-node-resolve": "^15.0.1",
     "css-loader": "^6.7.1",
+    "rollup-plugin-svelte": "^7.1.0",
     "style-loader": "^3.3.1",
     "svelte": "^3.52.0",
     "svelte-loader": "^3.1.3",
