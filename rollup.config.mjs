@@ -2,7 +2,7 @@ import svelte from 'rollup-plugin-svelte';
 import resolve from '@rollup/plugin-node-resolve';
     
 export default {
-        input: 'src/index.js',
+        input: 'src/_index.js',
         output: [
             { 
                 file: './dist/svelte-konva-linked/index.js',
