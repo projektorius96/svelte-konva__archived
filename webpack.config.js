@@ -12,6 +12,7 @@ const config = {
   devServer: {
         static: path.resolve(__dirname, 'dist'),
         port: process.env.PORT || 9999, /* default : 8080 */
+        open: true,
         devMiddleware: {
             writeToDisk: false, /* refer to for more explanation in detail: 
             @ https://github.com/webpack/webpack-dev-middleware#writetodisk 
